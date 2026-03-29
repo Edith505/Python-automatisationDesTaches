@@ -14,3 +14,6 @@ print(resultat)
 #Genere par AI 
 resultat = mots[::-1]
 print(resultat)
+
+
+
