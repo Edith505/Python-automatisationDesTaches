@@ -1,5 +1,5 @@
 import argparse
-import pathlib as path
+import pathlib as Path
 """
 
 parser = argparse.ArgumentParser()
@@ -12,10 +12,10 @@ with open(args.fichier, "r") as f:
     for line in f:
         print(line.rstrip("\n"))
 """
-chemin = path.Path("text.txt")
+chemin = Path("text.txt")
 
 print(f"chemin absolut : {chemin.absolute()}\n")
 with open(chemin, "r") as f:
     print(f.read())
 
-print(list(path.Path("Exercice 9").walk()))
+print(list(Path("Exercice 9").walk()))
