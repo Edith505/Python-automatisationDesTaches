@@ -1,6 +1,6 @@
 import argparse
 
-parser = argparse.ArgumentParser(description="Traitement d'un nombre")
+parser = argparse.ArgumentParser()
 
 parser.add_argument("nombre", type=int, help="Un nombre entier")
 parser.add_argument("operation", choices=["double", "binaire"], help="Type d'opération")

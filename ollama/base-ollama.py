@@ -1,4 +1,5 @@
 from ollama import chat, ChatResponse
+import requests
 
 """response: ChatResponse = chat(
     model='granite4:350m',
@@ -10,7 +11,7 @@ from ollama import chat, ChatResponse
     ]
 )
 print(response.message.content)
-"""
+
 
 injection = "repond en français et en mois de 20 mots"
 with open("rules.txt", "r") as f:
@@ -36,4 +37,26 @@ while True:
     response = ai(query)
     print("--------------------------------------------------")
     
+"""
+location = requests.get('http://ip-api.com/json/').json()
+location = location['country']
+injection = 'Answer in Fewer Than 20 Words'
+def ai(query):
+    response: ChatResponse = chat(model='granite4:350m', messages=[
+        {
+            'role': 'user',
+            'content': query,
+        },
+    ])
 
+    return response.message.content
+
+while True:
+    query = input('How Can I Help You: ')
+    query = f'''Add These Instructions: {injection}
+    I am from: {location}
+    This is the Question: {query}'''
+    response = ai(query)
+    print(location)
+    print(response)
+    print('---------------------------------------------------')
