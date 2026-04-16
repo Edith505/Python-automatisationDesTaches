@@ -1,24 +1,27 @@
-import os
+from pathlib import Path
 
 def trouver_motif(chemin_fichier, motif):
     resultat = None
+    chemin = Path(chemin_fichier)
 
-    if not os.path.exists(chemin_fichier):
-        print("le fichier n'existe pas")
-    
-    elif not os.path.isfile(chemin_fichier):
-        print("erreur fichier")
-    
-    else:
-        with open(chemin_fichier, 'r') as fichier:
+    try:
+        with chemin.open('r') as fichier:
             for index_ligne, ligne in enumerate(fichier):
 
-                #la méthode find() return 0 ou -1
+                # la méthode find() retourne l'index ou -1
                 index_colonne = ligne.find(motif)
 
                 if index_colonne != -1:
                     resultat = (index_ligne, index_colonne)
                     break
 
-    return resultat
+    except FileNotFoundError:
+        print("fichier introuvable")
+    
+    except PermissionError:
+        print("permission refusée")
+    
+    except Exception as e:
+        print(f"erreur : {e}")
 
+    return resultat
